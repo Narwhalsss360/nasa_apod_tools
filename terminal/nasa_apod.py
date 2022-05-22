@@ -1,5 +1,6 @@
 from PIL import Image
 import json
+from black import main
 import requests
 from io import BytesIO
 import os
@@ -24,11 +25,15 @@ class nasa_apod_helper:
             with open(os.path.join(os.path.dirname(__file__), f'{path}\\APOD Info.txt'), 'w') as info_file:
                 info_file.write(f'---{self.title}---\nDate:\n    {self.date}\nCopyright:\n    {self.copyright}    \nExplanation:\n    {self.explanation}')
 
+        if self.media_url.endswith('.gif'):
+            print(f'nasa_apod_helper | Image type "gif" not supprted for saving, sorry open here { self.media_url }.')
+            return
+
         if self.media_type == 'image':
             with Image.open(self.media) as image:
                 image.save(os.path.join(os.path.dirname(__file__), f'{path}\\APOD.jpg'))
         else:
-            print('Non-image media not supported yet :(.')
+            print('nasa_apod_helper | Non-image media not supported yet :(.')
 
 def get_nasa_apod(api_url):
     main_request = requests.get(api_url)
@@ -39,6 +44,8 @@ def get_nasa_apod(api_url):
     hdurl = json.dumps(main_json["hdurl"]).replace('"', '')
     date = json.dumps(main_json["date"]).replace('"', '')
     media_type = json.dumps(main_json["media_type"]).replace('"', '')
-    _copyright = json.dumps(main_json["copyright"]).replace('"', '')
-
+    if not (main_json.get('copyright') is None):
+        _copyright = json.dumps(main_json["copyright"]).replace('"', '')
+    else:
+        _copyright = "None"
     return nasa_apod_helper(title, explanation, hdurl, date, media_type, _copyright)
