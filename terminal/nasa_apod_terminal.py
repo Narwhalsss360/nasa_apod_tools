@@ -64,7 +64,7 @@ def main():
 
 while True:
     print('→NASA APOD TERMINAL←')
-    user_input = input('NASA APOD | Set NASA API URL first → set-url https://api.nasa.gov/planetary/apod?api_key=BDgmN5ZwPvfydl3vOJms7netc2VbaaptisdvdKlM')
+    user_input = input('NASA APOD | Set NASA API URL first → set-url ')
     if user_input == 'help':
         print('→→→Set NASA API URL First←←←')
         show_help()
