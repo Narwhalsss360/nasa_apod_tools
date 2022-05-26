@@ -5,7 +5,7 @@ import requests
 from io import BytesIO
 import os
 
-class nasa_apod_helper:
+class NasaApodHelper:
     def __init__(self, title, explanation, media_url, date, media_type, copyright):
         self.title = title
         self.explanation = explanation
@@ -48,4 +48,4 @@ def get_nasa_apod(api_url):
         _copyright = json.dumps(main_json["copyright"]).replace('"', '')
     else:
         _copyright = "None"
-    return nasa_apod_helper(title, explanation, hdurl, date, media_type, _copyright)
+    return NasaApodHelper(title, explanation, hdurl, date, media_type, _copyright)
