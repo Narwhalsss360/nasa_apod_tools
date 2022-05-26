@@ -1,1 +1,0 @@
-python nasa_apod_terminal.py
