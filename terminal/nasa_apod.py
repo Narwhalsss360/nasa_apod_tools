@@ -37,6 +37,9 @@ class NasaApodHelper:
 
 def get_nasa_apod(api_url):
     main_request = requests.get(api_url)
+    if main_request.status_code > 200:
+        return main_request
+
     main_json = main_request.json()
 
     title = json.dumps(main_json["title"]).replace('"', '')
@@ -44,7 +47,7 @@ def get_nasa_apod(api_url):
     hdurl = json.dumps(main_json["hdurl"]).replace('"', '')
     date = json.dumps(main_json["date"]).replace('"', '')
     media_type = json.dumps(main_json["media_type"]).replace('"', '')
-    if not (main_json.get('copyright') is None):
+    if main_json.get('copyright') is not None:
         _copyright = json.dumps(main_json["copyright"]).replace('"', '')
     else:
         _copyright = "None"
