@@ -79,6 +79,8 @@ save_command = terminal.TerminalCommand('save', save, ': <path?> Saves the APOD 
 set_desktop_command = terminal.TerminalCommand('set-bg', set_desktop, ': Sets the APOD as the desktop background.')
 clear_command = terminal.TerminalCommand('clear', terminal.clear, ': Clears the terminal output window.')
 exit_command = terminal.TerminalCommand('exit', exit_app, ': Exits the application.')
+quit_command = terminal.TerminalCommand('quit', exit_app, ': Exits the application.')
+q_command = terminal.TerminalCommand('q', exit_app, ': Exits the application.')
 
 apod_terminal.commands.append(set_url_command)
 apod_terminal.commands.append(get_command)
@@ -86,6 +88,8 @@ apod_terminal.commands.append(save_command)
 apod_terminal.commands.append(set_desktop_command)
 apod_terminal.commands.append(clear_command)
 apod_terminal.commands.append(exit_command)
+apod_terminal.commands.append(quit_command)
+apod_terminal.commands.append(q_command)
 
 while True:
     apod_terminal.get()
