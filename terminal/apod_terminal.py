@@ -15,14 +15,6 @@ def exit_app(statements):
     print('Exiting...')
     exit()
 
-def load_url():
-    global api_url
-    if not os.path.exists(URL_FILE_NAME):
-        return
-    with open(URL_FILE_NAME, 'r') as url_file:
-        api_url = url_file.readline()
-    get(None, ' use "help" for more.')
-
 def get(statements, extra_message = ''):
     global apod
     global api_url
@@ -35,6 +27,15 @@ def get(statements, extra_message = ''):
     else:
         apod.get_media()
         print(f'Got APOD: {apod.title} {apod.date}{extra_message}')
+
+def load_url():
+    global api_url
+    if not os.path.exists(URL_FILE_NAME):
+        return
+    print('Getting APOD...')
+    with open(URL_FILE_NAME, 'r') as url_file:
+        api_url = url_file.readline()
+    get(None, ' use "help" for more.')
 
 def set_url(statements):
     global api_url
@@ -71,8 +72,8 @@ def set_desktop(statements):
         sleep(0.050)
         os.remove('APOD.jpg')
 
-print('Getting APOD...')
 load_url()
+
 set_url_command = terminal.TerminalCommand('set-url', set_url, ': Sets the API URL as yours.')
 get_command = terminal.TerminalCommand('get', get, ': Gets NASA APOD API Response and image.')
 save_command = terminal.TerminalCommand('save', save, ': <path?> Saves the APOD in the specified path, if none, saves in file dir.')
