@@ -1,3 +1,6 @@
 [submodule "terminal/npy"]
 	path = terminal/npy
 	url = git@github.com:Narwhalsss360/npy.git
+[submodule "npy"]
+	path = npy
+	url = https://github.com/Narwhalsss360/npy
