@@ -1,0 +1,3 @@
+[submodule "terminal/npy"]
+	path = terminal/npy
+	url = https://github.com/Narwhalsss360/npy
